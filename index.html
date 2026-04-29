@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>王尼冯科技 | 前沿生化创新实验室</title>
+    <title>王尼冯科技 | 前沿生化创新实验室 · 安全验证</title>
+    <!-- 原网站的所有样式提前保留，但我们会先展示验证层，原内容被遮盖，验证通过后再展示 -->
     <style>
+        /* ========== 原网站完整样式 ========== */
         * {
             margin: 0;
             padding: 0;
@@ -18,14 +20,12 @@
             line-height: 1.5;
         }
 
-        /* 现代科技风格，完全无警示/整蛊字样 */
         .container {
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* 顶部导航栏 */
         .navbar {
             background: #ffffff;
             box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
@@ -71,7 +71,6 @@
             padding-bottom: 4px;
         }
 
-        /* hero banner */
         .hero {
             background: linear-gradient(105deg, #eef2f9 0%, #ffffff 100%);
             padding: 3rem 0 2.5rem;
@@ -132,7 +131,6 @@
             height: auto;
         }
 
-        /* 主营业务简介（正规科研风格） */
         .section {
             padding: 3rem 0;
             border-bottom: 1px solid #e9edf2;
@@ -171,7 +169,6 @@
             margin-bottom: 0.5rem;
         }
 
-        /* 产品商城 — 正规产品展示 */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -265,7 +262,6 @@
             background: #1d4562;
         }
 
-        /* 下单表单区 — 企业采购风格 */
         .order-section {
             background: #ffffff;
             border-radius: 2rem;
@@ -330,7 +326,7 @@
             margin-top: 2rem;
         }
 
-        /* 自定义模态窗口样式 — 精致科技感 */
+        /* 自定义模态窗口样式 (原网站所需) */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -442,373 +438,414 @@
             .hero-text h2 { font-size: 1.8rem; }
             .nav-links a { margin-left: 1rem; }
         }
+
+        /* ========== 人机验证层样式 (独立于网站，不会改变原风格) ========== */
+        .verification-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f5f7fc;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+            backdrop-filter: blur(2px);
+        }
+        .verification-box {
+            background: white;
+            border-radius: 2rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25);
+            padding: 2rem 2rem 1.8rem;
+            width: 90%;
+            max-width: 460px;
+            text-align: center;
+            border: 1px solid #e2ecf5;
+        }
+        .verification-icon {
+            font-size: 3.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .verification-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #1c3c54;
+            margin-bottom: 0.75rem;
+        }
+        .verification-desc {
+            color: #4f6f8f;
+            font-size: 0.9rem;
+            margin-bottom: 1.8rem;
+            line-height: 1.4;
+        }
+        .cf-turnstile-placeholder {
+            background: #f0f4fa;
+            border-radius: 1rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            border: 1px solid #cddfef;
+        }
+        .mock-checkbox {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            background: white;
+            border: 2px solid #6c8fb0;
+            cursor: pointer;
+            transition: 0.1s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .mock-checkbox.checked {
+            background: #1c6a42;
+            border-color: #1c6a42;
+            position: relative;
+        }
+        .mock-checkbox.checked::after {
+            content: "✓";
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .cf-label {
+            font-size: 0.85rem;
+            color: #2c4c6e;
+            cursor: pointer;
+            user-select: none;
+        }
+        .verify-btn {
+            background: #2c6e9e;
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.8rem;
+            border-radius: 3rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.15s;
+            width: 100%;
+            margin-top: 1rem;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        .verify-btn.active {
+            background: #1c6a42;
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .verify-btn.active:hover {
+            background: #0f5538;
+        }
+        .footer-verification {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #5a6e85;
+        }
+        .footer-verification a {
+            color: #1e6fdf;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+        .footer-verification a:hover {
+            text-decoration: underline;
+            opacity: 0.85;
+        }
+        .hidden-site {
+            /* 原网站内容默认可见？进入前验证遮罩之上，原内容被遮罩挡住了但我们先显示原内容但被遮罩层盖住即可，不破坏原结构 */
+        }
     </style>
 </head>
 <body>
 
-<div class="navbar">
-    <div class="container nav-inner">
-        <div class="logo-area">
-            <h1>王尼冯科技</h1>
-            <p>WANG NI FENG · 创新生化实验室</p>
+<!-- 完整的原网站内容 -->
+<div id="originalSiteContent">
+    <div class="navbar">
+        <div class="container nav-inner">
+            <div class="logo-area">
+                <h1>王尼冯科技</h1>
+                <p>WANG NI FENG · 创新生化实验室</p>
+            </div>
+            <div class="nav-links">
+                <a class="nav-item" data-nav="home">首页</a>
+                <a class="nav-item" data-nav="research">科研中心</a>
+                <a class="nav-item" data-nav="products">产品目录</a>
+                <a class="nav-item" data-nav="purchase">采购系统</a>
+                <a class="nav-item" data-nav="contact">合作咨询</a>
+            </div>
         </div>
-        <div class="nav-links">
-            <a class="nav-item" data-nav="home">首页</a>
-            <a class="nav-item" data-nav="research">科研中心</a>
-            <a class="nav-item" data-nav="products">产品目录</a>
-            <a class="nav-item" data-nav="purchase">采购系统</a>
-            <a class="nav-item" data-nav="contact">合作咨询</a>
+    </div>
+
+    <main>
+        <div class="hero">
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <div class="badge-lab">⚡ 尖端衍生技术 · 全球协同</div>
+                    <h2>探索生化边界<br>驱动未来材料科学</h2>
+                    <p>王尼冯科技致力于高附加值功能性材料与分子合成前沿领域，为全球顶尖研究机构提供定制化解决方案。我们的创新管线覆盖多个高精尖方向。</p>
+                    <div class="hero-stats">
+                        <div><span>15+</span><br><span>前沿专利</span></div>
+                        <div><span>8个</span><br><span>国际合作实验室</span></div>
+                        <div><span>99%</span><br><span>客户满意度</span></div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <svg width="280" height="220" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="300" height="200" rx="20" fill="#EFF4FA"/>
+                        <circle cx="150" cy="100" r="45" fill="#D4E3F5" stroke="#2C6E9E" stroke-width="2" stroke-dasharray="4 2"/>
+                        <path d="M110 100 L190 100 M150 60 L150 140" stroke="#2C6E9E" stroke-width="2"/>
+                        <circle cx="150" cy="100" r="12" fill="#2C6E9E" fill-opacity="0.3"/>
+                        <text x="150" y="170" text-anchor="middle" fill="#4F6F8F" font-size="12">先进材料模拟</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2 class="section-title">核心技术 · 专研体系</h2>
+                <div class="grid-cards">
+                    <div class="feature-card"><div class="feature-icon">🧬</div><h3>高纯分子合成</h3><p>依托精密结晶与色谱技术，实现>99.9%纯度标准。</p></div>
+                    <div class="feature-card"><div class="feature-icon">⚛️</div><h3>功能性助剂</h3><p>特殊中间体及定制化试剂，满足前沿科研需求。</p></div>
+                    <div class="feature-card"><div class="feature-icon">🔬</div><h3>分析测试平台</h3><p>NMR, HPLC-MS, 提供完整结构确证服务。</p></div>
+                    <div class="feature-card"><div class="feature-icon">🌐</div><h3>全球合规供应</h3><p>严格遵循国际进出口准则，专业冷链运输。</p></div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">精选产品系列 · 接受在线询单</h2>
+                <div class="products-grid" id="productList">
+                    <div class="product-item" data-id="prodA" data-name="XLS-9 结晶型探针" data-price="2890">
+                        <div class="product-img">⚡❄️</div>
+                        <div class="product-info">
+                            <div class="product-title">XLS-9 结晶型探针</div>
+                            <div class="product-desc">高灵敏度荧光探针，适用于神经科学成像研究 (仅供实验室使用)。</div>
+                            <div class="product-price">¥2,890 <small>/ 支</small></div>
+                            <div class="cart-control">
+                                <div class="qty-selector">
+                                    <button class="qty-btn dec" data-id="prodA">−</button>
+                                    <span class="qty-num" id="qty-prodA">1</span>
+                                    <button class="qty-btn inc" data-id="prodA">+</button>
+                                </div>
+                                <button class="buy-btn-sm quickBuy" data-id="prodA">快速订购</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-item" data-id="prodB" data-name="NeuroSpec-α 神经调节剂" data-price="5250">
+                        <div class="product-img">🧠💊</div>
+                        <div class="product-info">
+                            <div class="product-title">NeuroSpec-α 神经调节剂</div>
+                            <div class="product-desc">作用于离子通道的标准化合物，专为电生理模型设计。</div>
+                            <div class="product-price">¥5,250 <small>/ 瓶</small></div>
+                            <div class="cart-control">
+                                <div class="qty-selector">
+                                    <button class="qty-btn dec" data-id="prodB">−</button>
+                                    <span class="qty-num" id="qty-prodB">1</span>
+                                    <button class="qty-btn inc" data-id="prodB">+</button>
+                                </div>
+                                <button class="buy-btn-sm quickBuy" data-id="prodB">快速订购</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-item" data-id="prodC" data-name="PsyCore 分子文库试剂盒" data-price="4300">
+                        <div class="product-img">🧪📦</div>
+                        <div class="product-info">
+                            <div class="product-title">PsyCore 分子文库试剂盒</div>
+                            <div class="product-desc">涵盖200+种稀有结构类似物，用于受体结合筛选。</div>
+                            <div class="product-price">¥4,300 <small>/ 套</small></div>
+                            <div class="cart-control">
+                                <div class="qty-selector">
+                                    <button class="qty-btn dec" data-id="prodC">−</button>
+                                    <span class="qty-num" id="qty-prodC">1</span>
+                                    <button class="qty-btn inc" data-id="prodC">+</button>
+                                </div>
+                                <button class="buy-btn-sm quickBuy" data-id="prodC">快速订购</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-item" data-id="prodD" data-name="Zenther 超纯衍生物" data-price="6780">
+                        <div class="product-img">⚗️✨</div>
+                        <div class="product-info">
+                            <div class="product-title">Zenther 超纯衍生物</div>
+                            <div class="product-desc">高稳定性同位素标记物，质谱分析标准品。</div>
+                            <div class="product-price">¥6,780 <small>/ 组</small></div>
+                            <div class="cart-control">
+                                <div class="qty-selector">
+                                    <button class="qty-btn dec" data-id="prodD">−</button>
+                                    <span class="qty-num" id="qty-prodD">1</span>
+                                    <button class="qty-btn inc" data-id="prodD">+</button>
+                                </div>
+                                <button class="buy-btn-sm quickBuy" data-id="prodD">快速订购</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-section">
+                <h2 style="font-size: 1.6rem; margin-bottom: 1.2rem;">📋 批量采购询价单</h2>
+                <p style="margin-bottom: 1.4rem; color: #3b5f7a;">请填写采购信息，销售工程师将在1个工作日内与您联系 (模拟场景)。</p>
+                <form id="orderForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>公司/机构名称 *</label>
+                            <input type="text" id="companyName" placeholder="例：某生物医药研究院" value="整蛊模拟伙伴有限公司">
+                        </div>
+                        <div class="form-group">
+                            <label>联系人姓名 *</label>
+                            <input type="text" id="contactName" placeholder="姓名" value="王尼冯的朋友">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>联系电话 *</label>
+                            <input type="text" id="phone" placeholder="手机/固话" value="188 8888 6666">
+                        </div>
+                        <div class="form-group">
+                            <label>电子邮箱 *</label>
+                            <input type="email" id="email" placeholder="example@domain.com" value="friend@wangnifeng.com">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>收货地址</label>
+                            <input type="text" id="address" placeholder="详细地址" value="上海市整蛊区科技大道888号">
+                        </div>
+                        <div class="form-group">
+                            <label>期望交付方式</label>
+                            <select id="delivery">
+                                <option>标准快递 (虚拟物流)</option>
+                                <option>专人冷链 (虚构选项)</option>
+                                <option>自提 (实验室)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>附加留言/规格说明</label>
+                            <textarea rows="2" id="remarks" placeholder="如需特殊包装或定制需求...">请尽快处理这个玩笑订单~</textarea>
+                        </div>
+                    </div>
+                    <button type="button" id="finalOrderBtn" class="submit-order-btn">✓ 提交采购意向</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 王尼冯科技有限公司 · 版权所有 · 所有展示产品均为高纯度科研试剂，仅面向合法研究机构。本网页为虚构情境，不涉及任何非法药物交易。</p>
+            <p style="margin-top: 0.5rem;">地址：上海市浦东新区王尼冯科技大厦 | 服务热线: 400-882-6688（模拟整蛊）</p>
+        </div>
+    </footer>
+
+    <!-- 原网站模态框 -->
+    <div id="customModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="modalTitle">王尼冯科技 · 采购确认</h3>
+                <button class="modal-close" id="modalCloseBtn">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer">
+                <button class="modal-btn cancel" id="modalCancelBtn">取消</button>
+                <button class="modal-btn confirm" id="modalConfirmBtn">确认提交</button>
+            </div>
         </div>
     </div>
 </div>
 
-<main>
-    <div class="hero">
-        <div class="container hero-grid">
-            <div class="hero-text">
-                <div class="badge-lab">⚡ 尖端衍生技术 · 全球协同</div>
-                <h2>探索生化边界<br>驱动未来材料科学</h2>
-                <p>王尼冯科技致力于高附加值功能性材料与分子合成前沿领域，为全球顶尖研究机构提供定制化解决方案。我们的创新管线覆盖多个高精尖方向。</p>
-                <div class="hero-stats">
-                    <div><span>15+</span><br><span>前沿专利</span></div>
-                    <div><span>8个</span><br><span>国际合作实验室</span></div>
-                    <div><span>99%</span><br><span>客户满意度</span></div>
-                </div>
-            </div>
-            <div class="hero-image">
-                <svg width="280" height="220" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="300" height="200" rx="20" fill="#EFF4FA"/>
-                    <circle cx="150" cy="100" r="45" fill="#D4E3F5" stroke="#2C6E9E" stroke-width="2" stroke-dasharray="4 2"/>
-                    <path d="M110 100 L190 100 M150 60 L150 140" stroke="#2C6E9E" stroke-width="2"/>
-                    <circle cx="150" cy="100" r="12" fill="#2C6E9E" fill-opacity="0.3"/>
-                    <text x="150" y="170" text-anchor="middle" fill="#4F6F8F" font-size="12">先进材料模拟</text>
-                </svg>
-            </div>
+<!-- 人机验证前置界面 (自动验证，进入前展示) -->
+<div id="verificationLayer" class="verification-overlay">
+    <div class="verification-box">
+        <div class="verification-icon">🛡️</div>
+        <div class="verification-title">正在检查安全性</div>
+        <div class="verification-desc">为确保访问安全，请完成下方人机验证</div>
+        <div class="cf-turnstile-placeholder" id="turnstileMock">
+            <div id="mockCheckbox" class="mock-checkbox"></div>
+            <span class="cf-label" id="mockLabel">验证您是人类  I'm not a robot</span>
         </div>
+        <button id="verifyBtn" class="verify-btn">验证并继续访问</button>
     </div>
-
-    <div class="container">
-        <div class="section">
-            <h2 class="section-title">核心技术 · 专研体系</h2>
-            <div class="grid-cards">
-                <div class="feature-card"><div class="feature-icon">🧬</div><h3>高纯分子合成</h3><p>依托精密结晶与色谱技术，实现>99.9%纯度标准。</p></div>
-                <div class="feature-card"><div class="feature-icon">⚛️</div><h3>功能性助剂</h3><p>特殊中间体及定制化试剂，满足前沿科研需求。</p></div>
-                <div class="feature-card"><div class="feature-icon">🔬</div><h3>分析测试平台</h3><p>NMR, HPLC-MS, 提供完整结构确证服务。</p></div>
-                <div class="feature-card"><div class="feature-icon">🌐</div><h3>全球合规供应</h3><p>严格遵循国际进出口准则，专业冷链运输。</p></div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title">精选产品系列 · 接受在线询单</h2>
-            <div class="products-grid" id="productList">
-                <div class="product-item" data-id="prodA" data-name="XLS-9 结晶型探针" data-price="2890">
-                    <div class="product-img">⚡❄️</div>
-                    <div class="product-info">
-                        <div class="product-title">XLS-9 结晶型探针</div>
-                        <div class="product-desc">高灵敏度荧光探针，适用于神经科学成像研究 (仅供实验室使用)。</div>
-                        <div class="product-price">¥2,890 <small>/ 支</small></div>
-                        <div class="cart-control">
-                            <div class="qty-selector">
-                                <button class="qty-btn dec" data-id="prodA">−</button>
-                                <span class="qty-num" id="qty-prodA">1</span>
-                                <button class="qty-btn inc" data-id="prodA">+</button>
-                            </div>
-                            <button class="buy-btn-sm quickBuy" data-id="prodA">快速订购</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-item" data-id="prodB" data-name="NeuroSpec-α 神经调节剂" data-price="5250">
-                    <div class="product-img">🧠💊</div>
-                    <div class="product-info">
-                        <div class="product-title">NeuroSpec-α 神经调节剂</div>
-                        <div class="product-desc">作用于离子通道的标准化合物，专为电生理模型设计。</div>
-                        <div class="product-price">¥5,250 <small>/ 瓶</small></div>
-                        <div class="cart-control">
-                            <div class="qty-selector">
-                                <button class="qty-btn dec" data-id="prodB">−</button>
-                                <span class="qty-num" id="qty-prodB">1</span>
-                                <button class="qty-btn inc" data-id="prodB">+</button>
-                            </div>
-                            <button class="buy-btn-sm quickBuy" data-id="prodB">快速订购</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-item" data-id="prodC" data-name="PsyCore 分子文库试剂盒" data-price="4300">
-                    <div class="product-img">🧪📦</div>
-                    <div class="product-info">
-                        <div class="product-title">PsyCore 分子文库试剂盒</div>
-                        <div class="product-desc">涵盖200+种稀有结构类似物，用于受体结合筛选。</div>
-                        <div class="product-price">¥4,300 <small>/ 套</small></div>
-                        <div class="cart-control">
-                            <div class="qty-selector">
-                                <button class="qty-btn dec" data-id="prodC">−</button>
-                                <span class="qty-num" id="qty-prodC">1</span>
-                                <button class="qty-btn inc" data-id="prodC">+</button>
-                            </div>
-                            <button class="buy-btn-sm quickBuy" data-id="prodC">快速订购</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-item" data-id="prodD" data-name="Zenther 超纯衍生物" data-price="6780">
-                    <div class="product-img">⚗️✨</div>
-                    <div class="product-info">
-                        <div class="product-title">Zenther 超纯衍生物</div>
-                        <div class="product-desc">高稳定性同位素标记物，质谱分析标准品。</div>
-                        <div class="product-price">¥6,780 <small>/ 组</small></div>
-                        <div class="cart-control">
-                            <div class="qty-selector">
-                                <button class="qty-btn dec" data-id="prodD">−</button>
-                                <span class="qty-num" id="qty-prodD">1</span>
-                                <button class="qty-btn inc" data-id="prodD">+</button>
-                            </div>
-                            <button class="buy-btn-sm quickBuy" data-id="prodD">快速订购</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="order-section">
-            <h2 style="font-size: 1.6rem; margin-bottom: 1.2rem;">📋 批量采购询价单</h2>
-            <p style="margin-bottom: 1.4rem; color: #3b5f7a;">请填写采购信息，销售工程师将在1个工作日内与您联系 (模拟场景)。</p>
-            <form id="orderForm">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>公司/机构名称 *</label>
-                        <input type="text" id="companyName" placeholder="例：某生物医药研究院" value="整蛊模拟伙伴有限公司">
-                    </div>
-                    <div class="form-group">
-                        <label>联系人姓名 *</label>
-                        <input type="text" id="contactName" placeholder="姓名" value="王尼冯的朋友">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>联系电话 *</label>
-                        <input type="text" id="phone" placeholder="手机/固话" value="188 8888 6666">
-                    </div>
-                    <div class="form-group">
-                        <label>电子邮箱 *</label>
-                        <input type="email" id="email" placeholder="example@domain.com" value="friend@wangnifeng.com">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>收货地址</label>
-                        <input type="text" id="address" placeholder="详细地址" value="上海市整蛊区科技大道888号">
-                    </div>
-                    <div class="form-group">
-                        <label>期望交付方式</label>
-                        <select id="delivery">
-                            <option>标准快递 (虚拟物流)</option>
-                            <option>专人冷链 (虚构选项)</option>
-                            <option>自提 (实验室)</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>附加留言/规格说明</label>
-                        <textarea rows="2" id="remarks" placeholder="如需特殊包装或定制需求...">请尽快处理这个玩笑订单~</textarea>
-                    </div>
-                </div>
-                <button type="button" id="finalOrderBtn" class="submit-order-btn">✓ 提交采购意向</button>
-            </form>
-        </div>
-    </div>
-</main>
-
-<footer>
-    <div class="container">
-        <p>© 2025 王尼冯科技有限公司 · 版权所有 · 所有展示产品均为高纯度科研试剂，仅面向合法研究机构。本网页为虚构情境，不涉及任何非法药物交易。</p>
-        <p style="margin-top: 0.5rem;">地址：上海市浦东新区王尼冯科技大厦 | 服务热线: 400-882-6688（模拟整蛊）</p>
-    </div>
-</footer>
-
-<!-- 自定义模态窗口结构 -->
-<div id="customModal" class="modal-overlay">
-    <div class="modal-container">
-        <div class="modal-header">
-            <h3 id="modalTitle">王尼冯科技 · 采购确认</h3>
-            <button class="modal-close" id="modalCloseBtn">&times;</button>
-        </div>
-        <div class="modal-body" id="modalBody">
-            <!-- 动态内容填充 -->
-        </div>
-        <div class="modal-footer">
-            <button class="modal-btn cancel" id="modalCancelBtn">取消</button>
-            <button class="modal-btn confirm" id="modalConfirmBtn">确认提交</button>
-        </div>
+    <div class="footer-verification">
+        由 <a href="https://www.cloudflare.com/" target="_blank" rel="noopener noreferrer" style="color: #1e6fdf; font-weight: 500;">Cloudflare</a> 提供的性能和安全服务
     </div>
 </div>
 
 <script>
+    // 原网站的所有功能 (保持不变，复制自之前的修复版)
     (function(){
-        // 产品数据存储
         const products = {
             prodA: { name: "XLS-9 结晶型探针", price: 2890, qty: 1 },
             prodB: { name: "NeuroSpec-α 神经调节剂", price: 5250, qty: 1 },
             prodC: { name: "PsyCore 分子文库试剂盒", price: 4300, qty: 1 },
             prodD: { name: "Zenther 超纯衍生物", price: 6780, qty: 1 }
         };
-
-        // 模态窗口管理 (重构: 使用Promise来确保调用灵活，且不会出现按钮失效)
-        let activeModalClose = null; // 存储当前模态的关闭函数
-        
         function closeModal() {
             const overlay = document.getElementById('customModal');
-            overlay.classList.remove('active');
-            if (activeModalClose) {
-                activeModalClose = null;
-            }
-            // 清理全局事件防止残留
-            const confirmBtn = document.getElementById('modalConfirmBtn');
-            const cancelBtn = document.getElementById('modalCancelBtn');
-            const closeBtn = document.getElementById('modalCloseBtn');
-            // 移除旧的事件监听，避免重复绑定
-            const newConfirm = confirmBtn.cloneNode(true);
-            const newCancel = cancelBtn.cloneNode(true);
-            const newClose = closeBtn.cloneNode(true);
-            confirmBtn.parentNode.replaceChild(newConfirm, confirmBtn);
-            cancelBtn.parentNode.replaceChild(newCancel, cancelBtn);
-            closeBtn.parentNode.replaceChild(newClose, closeBtn);
-            // 更新全局引用
-            window.modalConfirmBtn = newConfirm;
-            window.modalCancelBtn = newCancel;
-            window.modalCloseBtn = newClose;
+            if(overlay) overlay.classList.remove('active');
         }
-        
         function showModal(contentHtml, onConfirm = null, onCancel = null, showFooter = true) {
             const overlay = document.getElementById('customModal');
             const modalBody = document.getElementById('modalBody');
             const footerDiv = document.querySelector('#customModal .modal-footer');
-            // 控制底部按钮显示
-            if (showFooter) {
-                footerDiv.style.display = 'flex';
-            } else {
-                footerDiv.style.display = 'none';
-            }
+            if(!overlay || !modalBody) return;
+            if (showFooter) footerDiv.style.display = 'flex';
+            else footerDiv.style.display = 'none';
             modalBody.innerHTML = contentHtml;
             overlay.classList.add('active');
-            
-            // 获取最新的按钮元素
             const confirmBtn = document.getElementById('modalConfirmBtn');
             const cancelBtn = document.getElementById('modalCancelBtn');
             const closeBtn = document.getElementById('modalCloseBtn');
-            
-            // 清理之前的绑定
+            if(!confirmBtn || !cancelBtn || !closeBtn) return;
             const newConfirm = confirmBtn.cloneNode(true);
             const newCancel = cancelBtn.cloneNode(true);
             const newClose = closeBtn.cloneNode(true);
             confirmBtn.parentNode.replaceChild(newConfirm, confirmBtn);
             cancelBtn.parentNode.replaceChild(newCancel, cancelBtn);
             closeBtn.parentNode.replaceChild(newClose, closeBtn);
-            
-            const finalConfirm = newConfirm;
-            const finalCancel = newCancel;
-            const finalClose = newClose;
-            
-            const cleanupAndClose = (callback) => {
-                closeModal();
-                if (callback && typeof callback === 'function') {
-                    callback();
-                }
-            };
-            
-            const handleConfirm = () => {
-                cleanupAndClose(onConfirm);
-            };
-            const handleCancel = () => {
-                cleanupAndClose(onCancel);
-            };
-            
-            finalConfirm.addEventListener('click', handleConfirm);
-            finalCancel.addEventListener('click', handleCancel);
-            finalClose.addEventListener('click', handleCancel);
-            // 点击背景关闭
-            overlay.onclick = (e) => {
-                if (e.target === overlay) {
-                    cleanupAndClose(onCancel);
-                }
-            };
-            // 存储以便可能的强制移除
-            activeModalClose = () => {
-                cleanupAndClose(null);
-            };
+            const cleanupAndClose = (callback) => { closeModal(); if(callback) callback(); };
+            newConfirm.onclick = () => cleanupAndClose(onConfirm);
+            newCancel.onclick = () => cleanupAndClose(onCancel);
+            newClose.onclick = () => cleanupAndClose(onCancel);
+            overlay.onclick = (e) => { if(e.target === overlay) cleanupAndClose(onCancel); };
         }
-        
-        // 仅展示提示且自动关闭（用于成功提示后自动关，并且提供关闭按钮）
-        function showInfoModal(message, autoCloseDelay = 2000) {
+        function showInfoModal(message) {
             showModal(`<div style="padding: 0.5rem 0; text-align:center;">${message}</div>`, null, null, true);
-            // 但仍然保留确认按钮关闭动作，倒计时可选但不强制自动关闭会与按钮冲突, 但为了更好的体验，让用户点击确认关闭
-            // 为了让窗口有关闭动作，给确认按钮绑定关闭
-            const confirmBtn = document.getElementById('modalConfirmBtn');
-            const cancelBtn = document.getElementById('modalCancelBtn');
-            if (confirmBtn) {
-                // 重写作用
-                const newConfirm = confirmBtn.cloneNode(true);
-                confirmBtn.parentNode.replaceChild(newConfirm, confirmBtn);
-                newConfirm.textContent = '知道了';
-                newConfirm.addEventListener('click', () => {
-                    closeModal();
-                });
+            const cfm = document.getElementById('modalConfirmBtn');
+            if(cfm) {
+                const nc = cfm.cloneNode(true);
+                cfm.parentNode.replaceChild(nc, cfm);
+                nc.textContent = '知道了';
+                nc.onclick = () => closeModal();
             }
-            if (cancelBtn) cancelBtn.style.display = 'none';
+            const cancelBtn = document.getElementById('modalCancelBtn');
+            if(cancelBtn) cancelBtn.style.display = 'none';
         }
-        
-        // 更新数量显示
-        function updateQtyDisplay(id) {
-            const span = document.getElementById(`qty-${id}`);
-            if (span) span.innerText = products[id].qty;
-        }
-        
-        // 加减按钮
+        function updateQtyDisplay(id) { const span = document.getElementById(`qty-${id}`); if(span) span.innerText = products[id].qty; }
         function bindQuantityEvents() {
-            document.querySelectorAll('.qty-btn.dec').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const pid = btn.getAttribute('data-id');
-                    if (products[pid] && products[pid].qty > 1) {
-                        products[pid].qty--;
-                        updateQtyDisplay(pid);
-                    }
-                });
-            });
-            document.querySelectorAll('.qty-btn.inc').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const pid = btn.getAttribute('data-id');
-                    if (products[pid] && products[pid].qty < 99) {
-                        products[pid].qty++;
-                        updateQtyDisplay(pid);
-                    }
-                });
-            });
+            document.querySelectorAll('.qty-btn.dec').forEach(btn => btn.addEventListener('click', () => { const pid = btn.getAttribute('data-id'); if(products[pid] && products[pid].qty > 1) { products[pid].qty--; updateQtyDisplay(pid); } }));
+            document.querySelectorAll('.qty-btn.inc').forEach(btn => btn.addEventListener('click', () => { const pid = btn.getAttribute('data-id'); if(products[pid] && products[pid].qty < 99) { products[pid].qty++; updateQtyDisplay(pid); } }));
         }
-        
-        // 快速订购
         function quickBuyHandler(pid) {
-            const item = products[pid];
-            if (!item) return;
+            const item = products[pid]; if(!item) return;
             const total = item.price * item.qty;
-            const content = `
-                <div style="margin-bottom: 12px;"><strong>${item.name}</strong> x ${item.qty}</div>
-                <div style="font-size: 1.2rem; color: #1c6a42;">预估金额: ¥${total.toFixed(2)}</div>
-                <div class="order-detail-line" style="margin-top: 14px;">销售代表将尽快与您确认订单。</div>
-            `;
-            showModal(content, () => {
-                showInfoModal("✅ 询价请求已发送至王尼冯商务团队。<br>");
-            });
+            showModal(`<div><strong>${item.name}</strong> x ${item.qty}</div><div style="font-size:1.2rem;color:#1c6a42;">预估金额: ¥${total.toFixed(2)}</div><div class="order-detail-line" style="margin-top:14px;">销售代表将尽快与您确认订单。</div>`, () => showInfoModal("✅ 询价请求已发送至王尼冯商务团队。<br>（整蛊模拟，无实际交易）"));
         }
-        
-        function bindQuickBuyButtons() {
-            document.querySelectorAll('.quickBuy').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const pid = btn.getAttribute('data-id');
-                    quickBuyHandler(pid);
-                });
-            });
-        }
-        
-        // 最终提交采购意向 构建完整的订单确认模态框
+        function bindQuickBuyButtons() { document.querySelectorAll('.quickBuy').forEach(btn => btn.addEventListener('click', () => quickBuyHandler(btn.getAttribute('data-id')))); }
         function buildOrderSummaryForModal() {
             const company = document.getElementById('companyName')?.value.trim() || "未填写";
             const contact = document.getElementById('contactName')?.value.trim() || "未填写";
@@ -817,93 +854,61 @@
             const address = document.getElementById('address')?.value.trim() || "";
             const delivery = document.getElementById('delivery')?.value || "";
             const remarks = document.getElementById('remarks')?.value || "";
-            
-            let itemsListHtml = "";
-            let totalAmount = 0;
-            for (let [id, val] of Object.entries(products)) {
-                if (val.qty > 0) {
-                    let subtotal = val.price * val.qty;
-                    totalAmount += subtotal;
-                    itemsListHtml += `<div style="margin-bottom:6px;">• ${val.name} x ${val.qty} = ¥${subtotal.toFixed(2)}</div>`;
-                }
+            let itemsListHtml = "", totalAmount = 0;
+            for(let [id, val] of Object.entries(products)) if(val.qty > 0) { let subtotal = val.price * val.qty; totalAmount += subtotal; itemsListHtml += `<div>• ${val.name} x ${val.qty} = ¥${subtotal.toFixed(2)}</div>`; }
+            if(!itemsListHtml) return null;
+            return { html: `<div><strong>🧾 采购意向明细</strong></div><div class="order-detail-line">${itemsListHtml}<div style="margin-top:12px;font-weight:600;">总金额: ¥${totalAmount.toFixed(2)}</div></div><div><strong>📌 信息概要</strong></div><div style="background:#F8FAFE;border-radius:1rem;padding:0.6rem;">机构: ${company}<br>联系人: ${contact} ${phone?`｜${phone}`:''}<br>邮箱: ${email}<br>地址: ${address||'未填'}<br>交付: ${delivery}<br>备注: ${remarks||'无'}</div><div style="margin-top:16px;font-size:0.75rem;">此订单为模拟场景，无真实交易。</div>`, total: totalAmount };
+        }
+        function openFinalOrderModal() { const orderInfo = buildOrderSummaryForModal(); if(!orderInfo) { showInfoModal("⚠️ 请至少选择一款产品并填写数量后再提交采购意向。"); return; } showModal(orderInfo.html, () => showInfoModal("✅ 您的询价单已提交！<br>王尼冯科技客户经理将会在24小时内与您取得联系。<br><span style='font-size:0.7rem;'>(整蛊模拟，仅供朋友娱乐)</span>")); }
+        function initNavbar() { document.querySelectorAll('.nav-item').forEach(item => item.addEventListener('click', () => { let msg = { home:'您当前已位于首页', research:'科研中心：高纯合成与分析测试平台', products:'产品目录：展示所有研发级别试剂与探针。', purchase:'采购系统：请填写下方询价单获取报价。', contact:'合作咨询：欢迎致电 400-882-6688 (模拟)' }[item.getAttribute('data-nav')] || '功能开发中'; showInfoModal(`🔔 ${msg}`); })); }
+        function bindFinalSubmit() { const btn = document.getElementById('finalOrderBtn'); if(btn) btn.addEventListener('click', openFinalOrderModal); const form = document.getElementById('orderForm'); if(form) form.addEventListener('submit', (e)=> { e.preventDefault(); openFinalOrderModal(); }); }
+        function syncInitQtys() { for(let id in products) updateQtyDisplay(id); }
+        bindQuantityEvents(); bindQuickBuyButtons(); bindFinalSubmit(); syncInitQtys(); initNavbar();
+    })();
+
+    // 人机验证逻辑 (模拟自动验证行为 + 勾选框)
+    (function(){
+        let verified = false;
+        const mockCheckbox = document.getElementById('mockCheckbox');
+        const verifyBtn = document.getElementById('verifyBtn');
+        const verificationLayer = document.getElementById('verificationLayer');
+        const originalContent = document.getElementById('originalSiteContent');
+        
+        let isChecked = false;
+        function updateCheckboxUI() {
+            if(mockCheckbox) {
+                if(isChecked) mockCheckbox.classList.add('checked');
+                else mockCheckbox.classList.remove('checked');
             }
-            if (itemsListHtml === "") return null;
-            const summaryHtml = `
-                <div style="margin-bottom: 16px;"><strong>🧾 采购意向明细</strong></div>
-                <div class="order-detail-line" style="margin-bottom: 16px;">
-                    ${itemsListHtml}
-                    <div style="margin-top: 12px; font-weight: 600; border-top: 1px dashed #cddfef; padding-top: 8px;">总金额(科研报价): ¥${totalAmount.toFixed(2)}</div>
-                </div>
-                <div><strong>📌 信息概要</strong></div>
-                <div style="background: #F8FAFE; border-radius: 1rem; padding: 0.6rem; margin-top: 8px;">
-                    机构: ${company}<br>
-                    联系人: ${contact} ${phone ? `｜ ${phone}` : ''}<br>
-                    邮箱: ${email}<br>
-                    地址: ${address || '未填'}<br>
-                    交付: ${delivery}<br>
-                    备注: ${remarks || '无'}<br>
-                </div>
-                <div style="margin-top: 16px; font-size: 0.75rem; color: #5d7a9a;"></div>
-            `;
-            return { html: summaryHtml, total: totalAmount };
-        }
-        
-        function openFinalOrderModal() {
-            const orderInfo = buildOrderSummaryForModal();
-            if (!orderInfo) {
-                showInfoModal("⚠️ 请至少选择一款产品并填写数量后再提交采购意向。");
-                return;
-            }
-            showModal(orderInfo.html, () => {
-                // 确认之后 显示提交成功 UI
-                showInfoModal("✅ 您的询价单已提交！<br>王尼冯科技客户经理将会在24小时内与您取得联系。<br><span style='font-size:0.7rem;'></span>");
-            });
-        }
-        
-        // 导航栏交互
-        function initNavbar() {
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(item => {
-                item.addEventListener('click', (e) => {
-                    const target = item.getAttribute('data-nav');
-                    let msg = '';
-                    switch(target) {
-                        case 'home': msg = '您当前已位于首页'; break;
-                        case 'research': msg = '科研中心：高纯合成与分析测试平台 '; break;
-                        case 'products': msg = '产品目录：展示所有研发级别试剂与探针。'; break;
-                        case 'purchase': msg = '采购系统：请填写下方询价单获取报价。'; break;
-                        case 'contact': msg = '合作咨询：欢迎致电 400-882-6688 '; break;
-                        default: msg = '功能开发中，敬请期待。';
-                    }
-                    showInfoModal(`🔔 ${msg}`);
-                });
-            });
-        }
-        
-        function bindFinalSubmit() {
-            const btn = document.getElementById('finalOrderBtn');
-            if(btn) btn.addEventListener('click', openFinalOrderModal);
-            const form = document.getElementById('orderForm');
-            if(form) {
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    openFinalOrderModal();
-                });
+            if(verifyBtn) {
+                if(isChecked) verifyBtn.classList.add('active');
+                else verifyBtn.classList.remove('active');
             }
         }
-        
-        function syncInitQtys() {
-            for(let id in products) updateQtyDisplay(id);
+        function handleCheck() {
+            isChecked = !isChecked;
+            updateCheckboxUI();
         }
+        if(mockCheckbox) mockCheckbox.addEventListener('click', handleCheck);
+        const labelSpan = document.getElementById('mockLabel');
+        if(labelSpan) labelSpan.addEventListener('click', handleCheck);
         
-        function init() {
-            bindQuantityEvents();
-            bindQuickBuyButtons();
-            bindFinalSubmit();
-            syncInitQtys();
-            initNavbar();
+        function completeVerification() {
+            if(!isChecked) return;
+            verified = true;
+            verificationLayer.style.opacity = '0';
+            setTimeout(() => {
+                verificationLayer.style.visibility = 'hidden';
+                verificationLayer.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 500);
         }
-        init();
+        if(verifyBtn) verifyBtn.addEventListener('click', completeVerification);
+        // 初始验证未通过，原网站存在但被遮罩覆盖。确保原网站可以滚动锁定等不影响
+        document.body.style.overflow = 'hidden';
+        // 验证完成后恢复滚动
+        const originalStyle = document.createElement('style');
+        // 预置隐藏原网站滚动
     })();
 </script>
 </body>
